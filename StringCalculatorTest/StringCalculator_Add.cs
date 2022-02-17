@@ -43,5 +43,16 @@ namespace StringCalculatorTest
 
             Assert.Equal(expectedResult, result);
         }
+
+        [Theory]
+        [InlineData("1\n2,3", 6)]
+        [InlineData("1\n2\n3", 6)]
+        [InlineData("1,2\n3", 6)]
+        public void Given_Three_comma_or_new_line_separated_numbers_then_Returns_sum(string numbers, int expectedResult)
+        {
+            var result = _calculator.Add(numbers);
+
+            Assert.Equal(expectedResult, result);
+        }
     }
 }
