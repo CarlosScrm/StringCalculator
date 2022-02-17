@@ -16,6 +16,7 @@ namespace StringCalculatorTest
 
         [Theory]
         [InlineData("1", 1)]
+        [InlineData("2", 2)]
         public void Given_string_1_then_Returns_1(string numbers, int expectedResult)
         {
             var calculator = new StringCalculator();
