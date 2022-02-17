@@ -54,5 +54,14 @@ namespace StringCalculatorTest
 
             Assert.Equal(expectedResult, result);
         }
+
+        [Theory]
+        [InlineData("//;\n1;2;3", 6)]
+        public void Given_Custom_separator_numbers_then_Returns_sum(string numbers, int expectedResult)
+        {
+            var result = _calculator.Add(numbers);
+
+            Assert.Equal(expectedResult, result);
+        }
     }
 }

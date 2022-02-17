@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StringCalculatorTest
@@ -9,9 +10,19 @@ namespace StringCalculatorTest
         {
             if (String.IsNullOrEmpty(numbers)) return 0;
 
-            var delimiters = new char[] { ',', '\n' };
+            var delimiters = new List<char> { ',', '\n' };
+            string numberString = numbers;
+            if (numbers.StartsWith("//"))
+            {
+                var splitInput = numberString.Split('\n');
+                var newDelimiter = splitInput.First().Trim('/');
+                numberString = String.Join('\n', splitInput.Skip(newDelimiter.Length));
 
-            var result = numbers.Split(delimiters)
+                delimiters.Add(Convert.ToChar(newDelimiter));
+            }
+
+
+            var result = numberString.Split(delimiters.ToArray())
                 .Select(s => int.Parse(s))
                 .Sum();
 
