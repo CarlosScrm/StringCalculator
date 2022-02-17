@@ -76,5 +76,16 @@ namespace StringCalculatorTest
 
             Assert.Equal(expectedResult, ex.Message);
         }
+
+        [Theory]
+        [InlineData("1,2,3000", 3)]
+        [InlineData("1001,2", 2)]
+        [InlineData("1000,2", 1002)]
+        public void Given_number_over_1000_then_Ignore_values(string numbers, int expectedResult)
+        {
+            var result = _calculator.Add(numbers);
+
+            Assert.Equal(expectedResult, result);
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace StringCalculatorTest
                 throw new Exception($"Negative numbers not allowed: {negativeString}");
             }
 
-            var result = numberList.Sum();
+            var result = numberList.Where(n => n <= 1000).Sum();
 
             return result;
         }
