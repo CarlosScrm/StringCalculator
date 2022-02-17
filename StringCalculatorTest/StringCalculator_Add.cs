@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace StringCalculatorTest
@@ -62,6 +63,18 @@ namespace StringCalculatorTest
             var result = _calculator.Add(numbers);
 
             Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [InlineData("-1,2", "Negative numbers not allowed: -1")]
+        [InlineData("-1,-2", "Negative numbers not allowed: -1,-2")]
+        public void Given_negative_input_then_Throws_Exception(string numbers, string expectedResult)
+        {
+            Action action = () => _calculator.Add(numbers);
+
+            var ex = Assert.Throws<Exception>(action);
+
+            Assert.Equal(expectedResult, ex.Message);
         }
     }
 }
